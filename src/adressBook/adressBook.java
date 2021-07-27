@@ -7,7 +7,7 @@ public class adressBook {
     private String tel;
     private int ms;
     private String birthday;
-    private String juso;
+    private String adress;
 
     public int getNo() {
         return no;
@@ -24,8 +24,8 @@ public class adressBook {
     public String getBirthday() {
         return birthday;
     }
-    public String getJuso() {
-        return juso;
+    public String getAdress() {
+        return adress;
     }
 
     public void setNo(int no) {
@@ -43,7 +43,7 @@ public class adressBook {
     public void setBirthday(String birthday) {
         this.birthday = birthday;
     }
-    public void setJuso(String juso) {
-        this.juso = juso;
+    public void setAdress(String adress) {
+        this.adress = adress;
     }
 }
