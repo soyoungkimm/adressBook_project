@@ -3,6 +3,7 @@
 <%@ page import="adressBook.adressBookDAO" %>
 <%
     request.setCharacterEncoding("UTF-8");
+    int no = Integer.parseInt(request.getParameter("no"));
     String name = request.getParameter("name");
     String tel1 = request.getParameter("tel1");
     String tel2 = request.getParameter("tel2");
@@ -20,7 +21,6 @@
     <title>AdressBook</title>
     <link rel="stylesheet" href="style.css">
     <meta charset="UTF-8">
-
 </head>
 <body>
 <%
@@ -33,18 +33,18 @@
 <%
     }
     adressBookDAO adressBookDao = new adressBookDAO();
-    int result = adressBookDao.writeNew(name, tel, ms, adress, birthday);
-    if(result == 0){
+    int result = adressBookDao.updateAdressBook(no, name, tel, ms, adress, birthday);
+    if(result == 0){ // 성공
 %>
 <script>
     location.href = "adressBook_list.jsp";
 </script>
 <%
-    }
-    else{
+}
+else{ // 실패
 %>
 <script>
-    alert("새 주소록 추가에 실패했습니다.");
+    alert("주소록 수정에 실패했습니다.");
     history.back();
 </script>
 <%

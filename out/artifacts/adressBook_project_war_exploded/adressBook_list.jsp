@@ -1,13 +1,6 @@
 <%@ page import="adressBook.adressBookDAO" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="adressBook.adressBook" %>
-<%--
-  Created by IntelliJ IDEA.
-  User: user
-  Date: 2021-07-08
-  Time: 오후 3:50
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     request.setCharacterEncoding("UTF-8");
@@ -45,6 +38,7 @@
     </style>
 </head>
 <body>
+<br>
 <form method="post" action="adressBook_list.jsp">
     <div align="center">
         이름 : <input type="text" name="searchWord" value="<%=searchWord%>" width="80">

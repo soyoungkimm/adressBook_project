@@ -47,6 +47,7 @@
         </tr>
         </tbody>
 </table>
+    <br>
     <div align="center">
         <input type="submit" value="입력">&nbsp;&nbsp;&nbsp;
         <input type="button" onclick="history.back()" value="뒤로가기">

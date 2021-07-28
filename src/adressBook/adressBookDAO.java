@@ -2,6 +2,7 @@ package adressBook;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.List;
 
 public class adressBookDAO {
 
@@ -79,32 +80,17 @@ public class adressBookDAO {
         return columnCount;
     }
 
-    public int getNextNo() {
-        String SQL = "select no from adressBook order by no desc";
-        try {
-            stmt = con.prepareStatement(SQL);
-            rs = stmt.executeQuery();
-            if(rs.next()){
-                return rs.getInt(1) + 1;
-            }
-        } catch (Exception e){
-            e.printStackTrace();
-        }
-        return -1; // 실패
-    }
-
     public int writeNew(String name, String tel, int ms, String adress, String birthday){
-        String SQL = "insert into adressBook value(?, ?, ?, ?, ?, ?)";
+        String SQL = "insert into adressBook (name, tel, ms, adress, birthday) values(?, ?, ?, ?, ?)";
         try {
             stmt = con.prepareStatement(SQL);
+            stmt.setString(1, name);
+            stmt.setString(2, tel);
+            stmt.setInt(3, ms);
+            stmt.setString(4, adress);
+            stmt.setString(5, birthday);
             stmt.executeUpdate();
-            stmt.setInt(1, getNextNo());
-            stmt.setString(2, name);
-            stmt.setString(3, tel);
-            stmt.setInt(4, ms);
-            stmt.setString(5, adress);
-            stmt.setString(6, birthday);
-            
+
             return 0; // 성공
 
         }catch (Exception e){
@@ -112,5 +98,45 @@ public class adressBookDAO {
         }
         return -1; // 실패
     }
+
+    public adressBook findByNo(int no){
+        String SQL = "select * from adressBook where no=" + no;
+        adressBook adb = new adressBook();
+        try {
+            stmt = con.prepareStatement(SQL);
+            rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                adb.setNo(rs.getInt(1));
+                adb.setName(rs.getString(2));
+                adb.setTel(rs.getString(3));
+                adb.setMs(rs.getInt(4));
+                adb.setBirthday(rs.getString(5));
+                adb.setAdress(rs.getString(6));
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return adb;
+    }
+
+    public int updateAdressBook(int no, String name, String tel, int ms, String adress, String birthday){
+        String SQL = "update adressBook set name=?, tel=?, ms=?, adress=?, birthday=? where no=?";
+        try {
+            stmt = con.prepareStatement(SQL);
+            stmt.setString(1, name);
+            stmt.setString(2, tel);
+            stmt.setInt(3, ms);
+            stmt.setString(4, adress);
+            stmt.setString(5, birthday);
+            stmt.setInt(6, no);
+            stmt.executeUpdate();
+            return 0; // 성공
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return -1; // 실패
+    }
+
 
 }
