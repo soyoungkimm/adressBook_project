@@ -130,6 +130,7 @@ public class adressBookDAO {
             stmt.setString(4, adress);
             stmt.setString(5, birthday);
             stmt.setInt(6, no);
+            stmt.executeUpdate();
 
             return 0; // 성공
         }catch (Exception e){
