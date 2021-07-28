@@ -130,7 +130,7 @@ public class adressBookDAO {
             stmt.setString(4, adress);
             stmt.setString(5, birthday);
             stmt.setInt(6, no);
-            stmt.executeUpdate();
+
             return 0; // 성공
         }catch (Exception e){
             e.printStackTrace();
@@ -138,5 +138,17 @@ public class adressBookDAO {
         return -1; // 실패
     }
 
+    public int deleteAdressBook(int no){
+        String SQL = "delete from adressBook where no=" + no;
+        try {
+            stmt = con.prepareStatement(SQL);
+            stmt.executeUpdate();
+
+            return 0; // 성공
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+        return -1; // 실패
+    }
 
 }

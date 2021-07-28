@@ -39,10 +39,12 @@
 </head>
 <body>
 <br>
+<br>
 <form method="post" action="adressBook_list.jsp">
     <div align="center">
         이름 : <input type="text" name="searchWord" value="<%=searchWord%>" width="80">
         <input type="submit" value="검색">
+        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
         <a href="adressBook_write.jsp">입력</a>
     </div>
 </form>
@@ -70,7 +72,7 @@
                 <td width="90"><%=list.get(i).getMs() == 0 ? "양력" : "음력"%></td>
                 <td width="150"><%=list.get(i).getBirthday()%></td>
                 <td width="200"><%=list.get(i).getAdress()%></td>
-                <td width="70"><a href="adressBook_delete.jsp?no=<%=list.get(i).getNo()%>">삭제</a></td>
+                <td width="70"><a href="javascript:isReallyDelete(<%=list.get(i).getNo()%>)">삭제</a></td>
             </tr>
             <%
                 }
@@ -117,5 +119,14 @@
         }
     %>
     </div>
+
+<script>
+    function isReallyDelete(no){
+        var answer = confirm("정말로 삭제하시겠습니까?");
+        if (answer){
+            location.href = "adressBook_delete.jsp?no=" + no;
+        }
+    }
+</script>
 </body>
 </html>
